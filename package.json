@@ -1,0 +1,25 @@
+{
+  "name": "41_astro_typst",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Nagase Tomohiko",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.37.6",
+    "@myriaddreamin/rehype-typst": "^0.7.0-rc2",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.6.1-rc5",
+    "@myriaddreamin/typst-ts-renderer": "^0.6.1-rc5",
+    "@myriaddreamin/typst.ts": "^0.6.1-rc5",
+    "astro": "^5.6.1",
+    "astro-typst": "^0.12.3",
+    "remark-math": "^6.0.0",
+    "sharp": "^0.34.2"
+  }
+}

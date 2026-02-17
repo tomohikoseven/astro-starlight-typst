@@ -1,0 +1,81 @@
+---
+title: Typstで書く最初のブログ記事
+description: Astro StarlightとTypstを組み合わせた最初の記事です
+---
+
+# Typstで書く最初のブログ記事
+
+## はじめに
+
+これは **Astro Starlight** と **Typst** を組み合わせた最初のブログ記事です。
+
+Typstは、LaTeXに代わる新しい組版システムで、以下のような特徴があります：
+
+- シンプルで直感的な構文
+- 高速なコンパイル
+- モダンな機能
+
+## Typstの基本的な使い方
+
+### テキストの装飾
+
+- **太字**で強調
+- *イタリック*で斜体
+- `コード`でインラインコード
+
+### 数式
+
+Typstでは数式も簡単に書けます。
+
+### リスト
+
+番号なしリスト：
+- 項目1
+- 項目2
+  - サブ項目2.1
+  - サブ項目2.2
+- 項目3
+
+番号付きリスト：
+1. 最初のステップ
+2. 次のステップ
+3. 最後のステップ
+
+## コードブロック
+
+```python
+def hello_world():
+    print("Hello, Typst!")
+    return "Welcome to Astro + Typst"
+
+hello_world()
+```
+
+## Typst記法の例
+
+Typstでは以下のような記法が使えます：
+
+```typst
+#set page(width: auto, height: auto, margin: 0pt)
+#set text(font: "Noto Sans CJK JP", size: 11pt)
+
+= 見出し1
+== 見出し2
+=== 見出し3
+
+*太字* _イタリック_ `コード`
+
+$ E = m c^2 $
+
+#align(center)[
+  #text(size: 14pt, fill: blue)[
+    *中央揃えの青いテキスト*
+  ]
+]
+```
+
+## まとめ
+
+Astro StarlightとTypstを組み合わせることで、美しい組版のブログを簡単に作成できます。
+
+**Happy Blogging with Typst!**
