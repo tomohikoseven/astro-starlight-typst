@@ -1,12 +1,12 @@
+#import "../../../lib/template.typ": project
+#show: project
+
 #metadata((
   title: "Typstで書くブログ記事（直接レンダリング）",
   description: "Typstファイルを直接Starlightの記事として使用する検証です"
 ))<frontmatter>
 
-#set text(font: "Noto Sans CJK JP", size: 11pt)
-#set page(margin: 1cm)
-#set par(leading: 1em, spacing: 2em, justify: true)
-#show heading: set block(above: 1.4em, below: 1em)
+// 以下、コンテンツ
 
 = Typstで書くブログ記事
 
