@@ -1,4 +1,4 @@
-#import "../../../lib/template.typ": project
+#import "../../../libs/template.typ": project
 #show: project
 
 #metadata((
@@ -34,6 +34,18 @@ Typstファイル内でStarlightのフロントマター（タイトルなど）
   description: "説明文"
 ))<frontmatter>
 ```
+
+== CeTZの利用例
+
+#import "../../../../libs/cetz/src/lib.typ" as cetz
+
+#cetz.canvas({
+  import cetz.draw: *
+  circle((0,0), radius: 1, fill: blue.lighten(80%), stroke: blue)
+  line((-1,0), (1,0), stroke: gray)
+  line((0,-1), (0,1), stroke: gray)
+  content((0.8, 0.8), [CeTZ])
+})
 
 == まとめ
 これで、Markdownを介さずに直接Typstで執筆できるようになりました。

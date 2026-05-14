@@ -1,4 +1,4 @@
-#import "../lib/template.typ": project
+#import "../libs/template.typ": project
 #show: project
 
 = Hello from Typst in Pages

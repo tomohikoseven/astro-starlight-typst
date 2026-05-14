@@ -16,4 +16,20 @@ $$
 integral_a^b f(x) dif x = F(b) - F(a)
 $$
 
+## CeTZ Example
+
+Using CeTZ for drawing:
+
+$$
+#import "/libs/cetz/src/lib.typ" as cetz
+
+#cetz.canvas({
+  import cetz.draw: *
+  circle((0,0), radius: 1, fill: blue.lighten(80%), stroke: blue)
+  line((-1,0), (1,0), stroke: gray)
+  line((0,-1), (0,1), stroke: gray)
+  content((0.8, 0.8), [CeTZ])
+})
+$$
+
 ## End of Test
