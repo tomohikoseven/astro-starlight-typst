@@ -1,0 +1,49 @@
+---
+title: MDX内でのTypstとCeTZの活用
+description: $$ ブロックを使用してTypstコードやCeTZ図形を埋め込む例です
+---
+
+# MDX内でのTypstとCeTZの活用
+
+このプロジェクトでは、標準的な Markdown の数式ブロック（`$$`）を使用して、強力な Typst エンジンによる描画が可能です。
+
+## 1. 複雑な数式の描画
+
+Typst の直感的な数式記法がそのまま使えます。
+
+$$
+integral_(-infinity)^infinity e^(-x^2) dif x = sqrt(pi)
+$$
+
+## 2. CeTZ による幾何学図形
+
+数式ブロックの中に CeTZ のコードを記述することで、ベクターグラフィックスを描画できます。
+
+$$
+#import "/libs/cetz/src/lib.typ" as cetz
+
+#cetz.canvas({
+  import cetz.draw: *
+  
+  // 背景のグリッド
+  grid((-2,-2), (2,2), step: 0.5, stroke: gray.lighten(80%))
+  
+  // 座標軸
+  line((-2.2, 0), (2.2, 0), mark: (end: ">"), stroke: 0.5pt)
+  line((0, -2.2), (0, 2.2), mark: (end: ">"), stroke: 0.5pt)
+  
+  // 塗りつぶされた円
+  circle((0,0), radius: 1, fill: blue.lighten(90%), stroke: blue)
+  
+  // ラベル
+  content((1.2, 1.2), [Unit Circle], anchor: "south-west")
+})
+$$
+
+## 3. インラインでの利用
+
+文中に $a^2 + b^2 = c^2$ のように数式を埋め込むことも可能です。
+
+## まとめ
+
+`$$` ブロックを活用することで、数式や図形を MDX 内に自由に配置できます。
