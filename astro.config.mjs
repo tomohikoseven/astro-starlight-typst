@@ -7,6 +7,7 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://astrotypst.ifdef.jp/',
 	markdown: {
 		remarkPlugins: [remarkMath],
 		rehypePlugins: [rehypeTypst],

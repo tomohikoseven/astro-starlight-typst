@@ -1,0 +1,51 @@
+name: Deploy to Ninja Homepage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # 手動実行を有効化
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 24
+
+    - name: Install fonts for Typst (Japanese)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-noto-cjk fonts-ipafont-gothic fonts-ipafont-mincho
+        # TypstがデフォルトでNoto Serif JPを使用する場合が多いので、優先的にインストール
+        # 必要に応じて他のフォントも追加
+        # 例: sudo apt-get install -y fonts-ipamj-mincho fonts-mplus
+        sudo fc-cache -fv # フォントキャッシュを更新 
+
+    - name: Set up Typst
+      uses: typst-community/setup-typst@v4
+      with:
+        typst-version: 0.14.2
+
+    - name: Install dependencies
+      run: npm install --force
+
+    - name: Build with Astro
+      run: npm run build
+
+
+    - name: Deploy to Ninja Homepage
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER_NINJA }}
+        username: ${{ secrets.FTP_USERNAME_NINJA }}
+        password: ${{ secrets.FTP_PASSWORD_NINJA }}
+        local-dir: ./dist/
+        server-dir: / 
