@@ -22,5 +22,19 @@
     "cheerio": "^1.2.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.2"
+  },
+  "overrides": {
+    "astro-typst": {
+      "@myriaddreamin/typst-ts-node-compiler": "$@myriaddreamin/typst-ts-node-compiler",
+      "@myriaddreamin/typst-ts-renderer": "$@myriaddreamin/typst-ts-renderer",
+      "@myriaddreamin/typst.ts": "$@myriaddreamin/typst.ts"
+    },
+    "astro-integration-kit": {
+      "astro": "$astro"
+    }
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^6.0.3"
   }
 }

@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { typst } from 'astro-typst';
 import remarkMath from 'remark-math';
+// @ts-ignore
 import rehypeTypst from '@myriaddreamin/rehype-typst';
 
 // https://astro.build/config
@@ -14,8 +15,9 @@ export default defineConfig({
 	},
 	integrations: [
 		typst({
+			// @ts-expect-error
 			root: ".",
-			target: (id) => "svg"
+			target: () => "svg"
 		}),
 		starlight({
 			title: 'Typst Blog',
