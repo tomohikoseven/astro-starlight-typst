@@ -13,6 +13,7 @@ export default defineConfig({
 	},
 	integrations: [
 		typst({
+			root: ".",
 			target: (id) => "svg"
 		}),
 		starlight({
@@ -21,7 +22,7 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'ブログ',
-					autogenerate: { directory: 'blog' },
+					items: [{ autogenerate: { directory: 'blog' } }],
 				},
 				{
 					label: 'Guides',
@@ -31,7 +32,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					items: [{ autogenerate: { directory: 'reference' } }],
 				},
 			],
 		}),
