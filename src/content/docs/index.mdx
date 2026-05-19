@@ -1,19 +1,46 @@
 ---
 title: Astro Starlight x Typst
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+description: Astro、Starlight、およびTypstを融合させた、超高速・超美麗な次世代技術ブログのデモサイト。
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: 高速なAstroと高精細なTypst組版エンジンによる、極上の技術文書ショーケース
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example
-      link: /guides/example/
+    - text: ブログを読む
+      link: /blog/astro-component-demo/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: GitHubで見る
+      link: https://github.com/tomohikoseven/astro-starlight-typst
+      icon: github
       variant: minimal
 ---
 
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
+## 📚 ブログ記事一覧
+
+Astro x Typst の能力をフルに実演する4つのブログ記事です。
+
+<CardGrid>
+  <LinkCard 
+    title="1. Astroコンポーネントデモ" 
+    href="/blog/astro-component-demo/" 
+    description="カプセル化されたスタイルと動的なカウンターJSを備えた、リアクティブなAstroアイランドの実演。"
+  />
+  <LinkCard 
+    title="2. Typst数式レンダリングデモ" 
+    href="/blog/markdown-math-demo/" 
+    description="Markdown内で標準的な $ と $$ を用いて記述された数式が、Typstの力で真のインラインおよびブロック数式として超美麗に描画されるデモ。"
+  />
+  <LinkCard 
+    title="3. 純Typst (.typ) 直接執筆デモ" 
+    href="/blog/typst-article-demo/" 
+    description="Markdownを一切介さず、Typst独自のプログラマブルな組版・レイアウトエンジンのみでStarlight上に直接記述されたブログ記事。"
+  />
+  <LinkCard 
+    title="4. CeTZ × Fletcher × Physicaデモ" 
+    href="/blog/cetz-fletcher-physica-demo/" 
+    description="ベクター作図、可換図式やフローチャート、高度な物理学表記の3大ライブラリを網羅し、JSXのパース干渉を完全に防ぐコンポーネント設計。"
+  />
+</CardGrid>

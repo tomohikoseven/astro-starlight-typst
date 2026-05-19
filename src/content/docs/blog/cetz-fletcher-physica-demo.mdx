@@ -1,0 +1,108 @@
+---
+title: CeTZ, Fletcher & Physica — Typstによる極上グラフィックスと物理数式の統合
+description: Markdown (.mdx) 内で、Typstの強力なライブラリである CeTZ (ベクター作図), Fletcher (図式), Physica (物理記法) を網羅し、Web上での表現力を極限まで高める方法を解説します。
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+import CetzDemo from '../../../components/diagrams/cetz-demo.typ';
+import FletcherCommutative from '../../../components/diagrams/fletcher-commutative.typ';
+import FletcherFlowchart from '../../../components/diagrams/fletcher-flowchart.typ';
+import HybridDemo from '../../../components/diagrams/hybrid-demo.typ';
+
+Astro / Starlight と Typst の組み合わせにおける最も強力な利点は、静的なテキストや数式だけでなく、**「プログラマブルなベクターグラフィックス」**と**「高度な科学表記」**をドキュメント内に直接美しく描画できる点にあります。
+
+本記事では、このプロジェクトに組み込まれている3つの強力なライブラリ **CeTZ**、**Fletcher**、**Physica** をすべて使って、Web上に極上の技術文書を作成する方法を解説します。
+
+複雑なダイアグラムコードを個別の `.typ` ファイルに切り出し、Astroコンポーネントとしてインポートする**極めてクリーンで保守性の高い現代的な執筆手法**を紹介します。
+
+---
+
+## 🎨 1. 3つのライブラリの概要
+
+<CardGrid>
+  <Card title="CeTZ" icon="sun">
+    TikZ（LaTeXの描画パッケージ）に代わる、Typstのための強力なグラフィックス描画ライブラリ。点、線、円、関数プロット、座標変換などの本格的なベクターグラフィックスをコードで生成します。
+  </Card>
+  <Card title="Fletcher" icon="random">
+    CeTZをベースに構築された、ノードと接続線の描画に特化したライブラリ。カテゴリ論の可換図式（Commutative Diagrams）やフローチャート、状態遷移図を簡潔な数式風グリッド記法で描画できます。
+  </Card>
+  <Card title="Physica" icon="pencil">
+    物理学や数学の複雑な表記を簡略化するマクロライブラリ。偏微分、ベクトル、行列、ディラックのブラケット記法などを極めてシンプルかつ綺麗に記述できます。
+  </Card>
+</CardGrid>
+
+---
+
+## 🛠️ 近代的な執筆アプローチ：コンポーネント化
+
+MDXファイル内に複雑な描画ロジックを直接記述すると、エディタのシンタックスハイライトが効きづらくなったり、Markdownパーサーと `{` や `}` などの記号が干渉してエラーの原因になります。
+
+そのため、本プロジェクトでは**「複雑な図形やグラフは `.typ` ファイルに記述し、MDX内でインポートして呼び出す」**というエレガントな方法を推奨しています。
+
+```mdx
+// MDXでのインポート例
+import MyDiagram from '../../../components/diagrams/my-diagram.typ';
+
+<MyDiagram />
+```
+
+---
+
+## 📐 2. CeTZ による幾何学図形とグラフィックスの描画
+
+CeTZを使うと、図を外部ツールで作成して画像として貼り付ける必要がなくなります。すべてコードで定義するため、解像度無限 of 楽しいベクター画像（SVG）としてページ内に埋め込まれます。
+
+以下は、座標軸、背景グリッド、塗りつぶされた単位円、およびベクターアロー（矢印）を組み合わせた幾何学図形のデモです（`cetz-demo.typ` をインポートしています）。
+
+<CetzDemo />
+
+---
+
+## ⛓️ 3. Fletcher による美しい図式と遷移図
+
+Fletcherは、ノード間のつながりを記述することに特化しています。数式モードと親和性の高いグリッド表記、およびコードによる記述のどちらもサポートしています。
+
+### カテゴリ論の可換図式（同型定理）
+
+数式中に `&`（カラム区切り）と `\`（行区切り）を並べるだけで描画できます（`fletcher-commutative.typ` をインポートしています）。
+
+<FletcherCommutative />
+
+### リッチなスタイルのフローチャート
+
+長方形や角丸、ひし形、六角形などの多彩なノード形状、およびグラデーション塗りをサポートしています（`fletcher-flowchart.typ` をインポートしています）。
+
+<FletcherFlowchart />
+
+---
+
+## ⚛️ 4. Physica による洗練された物理・数学表記
+
+Physicaは、数学者や物理学者のための記述マクロです。偏微分やブラケット記法など、標準のTypstでは冗長になる記述を極限までシンプルにします。
+
+$$
+#import "/libs/physica/physica.typ": *
+
+// 偏微分の等価性
+#pdv($f$, $x$, $y$) = #pdv($f$, $y$, $x$) \
+
+// 2次元回転行列とシュレーディンガー方程式で使う表記
+#vb($E$) = - nabla V - #pdv(vb($A$), $t$) quad text("and") quad #braket($phi$, $hat(H)$, $psi$) = #expval($hat(H)$, $psi$)
+$$
+
+---
+
+## ⚡ 5. トリプル連携デモ：CeTZ × Fletcher × Physica
+
+最後に、これら3つのライブラリを高度に組み合わせた究極のデモを紹介します。
+**Fletcher** で状態間の遷移構造を描き、遷移確率を **Physica** のブラケット記法で数式化し、全体の幾何学的な位置やデザイン調整を **CeTZ** ベースのエンジンで行います（`hybrid-demo.typ` をインポートしています）。
+
+<HybridDemo />
+
+<Aside type="tip" title="ドキュメント作成のパラダイムシフト">
+  これまでWebで数式やグラフ、フローチャートを混在させるには、LaTeX + HTML + 描画ツール（IllustratorやPowerPointなど）からSVGエクスポート + MathJaxといった非常に複雑で分断されたステップが必要でした。
+  
+  Astro x Typst of 環境では、**すべてのドキュメント要素が単一のプレーンテキストとして管理され**、ビルド時に完璧な統一感（フォントの一致、ベクター精度、高速レンダリング）を持って完全に統合されます。
+</Aside>
+
+これら3つのライブラリをマスターして、他の追随を許さない圧倒的に高品質な技術ドキュメントを作成していきましょう！

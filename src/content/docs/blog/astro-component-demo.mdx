@@ -1,0 +1,119 @@
+---
+title: Astroコンポーネントの作成と活用
+description: Astroのアイランドアーキテクチャと、HTML/CSS/JSをカプセル化したインタラクティブなカスタムコンポーネントの作成方法について解説します。
+---
+
+import AstroCounter from '../../../components/AstroCounter.astro';
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+Astroは、**「デフォルトでゼロJavaScript」**というユニークな哲学を持ちながら、必要な部分にだけ動的なインタラクティビティを付与できる強力なフレームワークです。
+
+本記事では、Astroのコンポーネント設計の魅力と、HTML・CSS・JavaScriptを単一ファイルに美しくカプセル化したインタラクティブなカウンターコンポーネントの実装例を紹介します。
+
+---
+
+## 🧩 1. Astroコンポーネントの特徴
+
+Astroコンポーネント（`.astro` ファイル）は、HTMLの進化した形です。サーバーサイドでのレンダリングロジック、マークアップ、スコープ付きCSS、そしてクライアントサイドJavaScriptを1つのファイルに記述することができます。
+
+<CardGrid>
+  <Card title="カプセル化（Scoped CSS）" icon="setting">
+    Astroコンポーネント内の `<style>` タグは、自動的にそのコンポーネント内だけに適用されるようにスコープ化されます。クラス名が競合する心配は一切ありません。
+  </Card>
+  <Card title="フロントマター（Astro Code Fence）" icon="document">
+    `---`（コードフェンス）で囲まれた部分は、サーバー側でのみビルド時に実行されます。APIからのデータ取得やプロパティの受け取りが簡単に行えます。
+  </Card>
+</CardGrid>
+
+---
+
+## ⚡ 2. 実際のサンプル：インタラクティブ・カウンター
+
+以下は、このプロジェクトで作成した `AstroCounter.astro` コンポーネントの実体です。外部のJavaScriptフレームワーク（ReactやVueなど）に依存せず、**Astroのネイティブなクライアントサイド `<script>` タグ**を使用して動作させています。
+
+### コンポーネントのレンダリング
+
+実際にレンダリングされたコンポーネントがこちらです。ボタンをクリックして動作を確認してみてください。
+
+<AstroCounter title="リアルタイム・カウンター" initialCount={10} />
+
+---
+
+## 📝 3. コンポーネントのコード解説
+
+このカウンターは以下のような非常に直感的で整理されたコードで実装されています。
+
+```astro
+---
+// AstroCounter.astro
+interface Props {
+  initialCount?: number;
+  title?: string;
+}
+const { initialCount = 0, title = "Astro Interactive Counter" } = Astro.props;
+---
+
+<div class="counter-card">
+  <h3>{title}</h3>
+  <div class="counter-container">
+    <button id="decrement">-</button>
+    <span id="count">{initialCount}</span>
+    <button id="increment">+</button>
+  </div>
+</div>
+
+<style>
+  /* 自動的にスコープ化されるCSS */
+  .counter-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+  }
+  /* ... スタイル記述 ... */
+</style>
+
+<script>
+  // クライアント側で実行されるピュアJavaScript
+  const decrementBtn = document.getElementById('decrement');
+  const incrementBtn = document.getElementById('increment');
+  const countEl = document.getElementById('count');
+
+  if (decrementBtn && incrementBtn && countEl) {
+    let count = parseInt(countEl.textContent || '0', 10);
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      countEl.textContent = count.toString();
+    });
+    decrementBtn.addEventListener('click', () => {
+      count--;
+      countEl.textContent = count.toString();
+    });
+  }
+</script>
+```
+
+<Aside type="note" title="クライアントサイドJavaScriptの最適化">
+  Astro内の `<script>` タグは、自動的にバンドル、縮小（Minify）、そしてESモジュールとしてブラウザに配信されます。また、同じコンポーネントがページ上に複数あっても、スクリプトは1回しかロードされず、パフォーマンスが極限まで高められます。
+</Aside>
+
+---
+
+## 🚀 4. MDXへのインポート方法
+
+MDXファイル（この記事のように、Markdown内にコンポーネントを埋め込める拡張形式）では、標準的なESモジュールの `import` 構文を使ってAstroコンポーネントを自由に読み込んで使用できます。
+
+```mdx
+---
+title: 私の記事
+---
+import AstroCounter from '../../../components/AstroCounter.astro';
+
+# マイブログ
+
+ここにカウンターを設置します：
+<AstroCounter initialCount={5} title="マイカウンター" />
+```
+
+Astroのコンポーネントシステムを活用して、静的な美しさと動的なインタラクションが融合した極上のサイトを作っていきましょう！

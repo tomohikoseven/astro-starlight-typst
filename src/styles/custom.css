@@ -1,0 +1,32 @@
+/* ====================== */
+/* Typst                  */
+/* ====================== */
+
+/* 数式のスタイル（インライン表示） */
+svg.typst-doc {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0rem; 
+  margin-top: 0rem; 
+  vertical-align: middle; /* 文中のテキストとベースラインを揃える */
+}
+
+/* ブロック表示の数式（display style）の場合 */
+:not(p,li,strong) > svg.typst-doc {
+  display: block;
+  margin: 1.5rem auto;
+  padding-top: 1rem; 
+}
+
+/* 
+  rehype-typstが数式をSVG画像にするときに一緒にビルドするHTML内のCSSの "svg {...}" が干渉し、
+  Starlight標準の各種アイコンや装飾用SVGが表示されなくなる不具合を解消するための上書きハック
+*/
+.starlight-aside__icon, /* StarlightのAside（警告やTipなど）のアイコン */
+svg[class^="astro-"],   /* StarlightのSNSリンクやロゴのアイコン */
+svg.icon.label-icon,    /* テーマ選択（ライト/ダーク）のアイコン */
+svg.caret,              /* サイドバーやプルダウンの矢印 (>) アイコン */
+svg[class^=" astro-"] { /* Astro汎用Iconコンポーネント */
+  fill: currentColor;
+}

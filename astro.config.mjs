@@ -21,6 +21,7 @@ export default defineConfig({
 		}),
 		starlight({
 			title: 'Typst Blog',
+			customCss: ['./src/styles/custom.css'],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{

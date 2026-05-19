@@ -1,0 +1,117 @@
+---
+// AstroCounter.astro
+interface Props {
+	initialCount?: number;
+	title?: string;
+}
+const { initialCount = 0, title = "Astro Interactive Counter" } = Astro.props;
+---
+
+<div class="counter-card">
+	<h3>{title}</h3>
+	<p class="counter-desc">Astro component with scoped styles and interactive client-side JavaScript.</p>
+	<div class="counter-container">
+		<button id="decrement" aria-label="Decrement">-</button>
+		<span id="count">{initialCount}</span>
+		<button id="increment" aria-label="Increment">+</button>
+	</div>
+</div>
+
+<style>
+	.counter-card {
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		padding: 2rem;
+		max-width: 400px;
+		margin: 2rem auto;
+		text-align: center;
+		box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s;
+	}
+	.counter-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 40px 0 rgba(59, 130, 246, 0.25);
+		border-color: rgba(59, 130, 246, 0.4);
+	}
+	h3 {
+		margin-top: 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+		background: linear-gradient(to right, #60a5fa, #a78bfa);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		letter-spacing: -0.025em;
+	}
+	.counter-desc {
+		font-size: 0.875rem;
+		color: #9ca3af;
+		margin-bottom: 1.5rem;
+		line-height: 1.5;
+	}
+	.counter-container {
+		display: inline-flex;
+		align-items: center;
+		gap: 1.5rem;
+		background: rgba(0, 0, 0, 0.2);
+		padding: 0.5rem 1rem;
+		border-radius: 9999px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	button {
+		background: linear-gradient(135deg, #3b82f6, #2563eb);
+		color: white;
+		border: none;
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		font-size: 1.25rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+	}
+	button:hover {
+		transform: translateY(-2px) scale(1.05);
+		box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+		background: linear-gradient(135deg, #60a5fa, #3b82f6);
+	}
+	button:active {
+		transform: translateY(0) scale(0.95);
+	}
+	span {
+		font-size: 2.25rem;
+		font-weight: 700;
+		min-width: 3.5rem;
+		text-align: center;
+		font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+		color: #f3f4f6;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+</style>
+
+<script>
+	// Astro component script for interactivity
+	const decrementBtn = document.getElementById('decrement');
+	const incrementBtn = document.getElementById('increment');
+	const countEl = document.getElementById('count');
+
+	if (decrementBtn && incrementBtn && countEl) {
+		let count = parseInt(countEl.textContent || '0', 10);
+		
+		decrementBtn.addEventListener('click', () => {
+			count--;
+			countEl.textContent = count.toString();
+		});
+
+		incrementBtn.addEventListener('click', () => {
+			count++;
+			countEl.textContent = count.toString();
+		});
+	}
+</script>
