@@ -27,6 +27,7 @@ svg.typst-doc {
 svg[class^="astro-"],   /* StarlightのSNSリンクやロゴのアイコン */
 svg.icon.label-icon,    /* テーマ選択（ライト/ダーク）のアイコン */
 svg.caret,              /* サイドバーやプルダウンの矢印 (>) アイコン */
-svg[class^=" astro-"] { /* Astro汎用Iconコンポーネント */
+svg[class^=" astro-"],  /* Astro汎用Iconコンポーネント */
+starlight-menu-button svg { /* スマホ版ハンバーガーメニュー */
   fill: currentColor;
 }
