@@ -12,6 +12,7 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 export default defineConfig({
 	site: 'https://astrotypst.ifdef.jp/',
 	markdown: {
+		// @ts-ignore
 		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
 		rehypePlugins: [rehypeTypst],
 	},
