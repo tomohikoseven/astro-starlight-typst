@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { typst } from 'astro-typst';
 import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
+import remarkSmartypants from 'remark-smartypants';
 // @ts-ignore
 import rehypeTypst from '@myriaddreamin/rehype-typst';
 
@@ -10,7 +12,7 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 export default defineConfig({
 	site: 'https://astrotypst.ifdef.jp/',
 	markdown: {
-		remarkPlugins: [remarkMath],
+		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
 		rehypePlugins: [rehypeTypst],
 	},
 	integrations: [
