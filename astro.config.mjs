@@ -5,6 +5,7 @@ import { typst } from 'astro-typst';
 import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
+import { unified } from '@astrojs/markdown-remark';
 // @ts-ignore
 import rehypeTypst from '@myriaddreamin/rehype-typst';
 
@@ -12,8 +13,10 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 export default defineConfig({
 	site: 'https://astrotypst.ifdef.jp/',
 	markdown: {
-		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
-		rehypePlugins: [rehypeTypst],
+		processor: unified({
+			remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
+			rehypePlugins: [rehypeTypst],
+		})
 	},
 	integrations: [
 		typst({
