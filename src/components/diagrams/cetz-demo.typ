@@ -1,5 +1,5 @@
 #set page(width: auto, height: auto, margin: 0pt)
-#import "../../../libs/cetz/src/lib.typ" as cetz
+#import "@preview/cetz:0.5.2" as cetz
 
 #cetz.canvas({
   import cetz.draw: *

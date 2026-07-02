@@ -41,7 +41,7 @@ Typst の数式記法がそのまま使えます。
 $ integral_a^b f(x) dif x $
 
 == CeTZ による図式の例
-#import "../../../../libs/cetz/src/lib.typ" as cetz
+#import "@preview/cetz:0.5.2" as cetz
 #cetz.canvas({
   import cetz.draw: *
   circle((0,0), radius: 1, fill: blue.lighten(80%), stroke: blue)
@@ -59,7 +59,7 @@ $$
 
 ## CeTZ 図形
 $$
-#import "/libs/cetz/src/lib.typ" as cetz
+#import "@preview/cetz:0.5.2" as cetz
 #cetz.canvas({
   import cetz.draw: *
   line((0,0), (2,2), stroke: red)
@@ -99,7 +99,7 @@ $$
 
 ## Fletcher によるダイアグラム
 $$
-#import "/libs/fletcher/src/exports.typ" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #diagram(cell-size: 15mm, $
   A edge(f, ->) edge("d", pi, ->>) & B \
   C edge("ur", tilde(f), "hook-->")
@@ -111,7 +111,7 @@ $$
 
 ```typst
 #import "../../../../libs/physica/physica.typ": *
-#import "../../../../libs/fletcher/src/exports.typ" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
 $ pdv(f, x, y) $
 

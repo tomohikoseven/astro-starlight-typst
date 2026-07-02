@@ -1,5 +1,5 @@
 #set page(width: auto, height: auto, margin: 0pt)
-#import "../../../libs/fletcher/src/exports.typ" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "../../../libs/physica/physica.typ": *
 
 #diagram(
