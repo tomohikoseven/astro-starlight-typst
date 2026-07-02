@@ -17,6 +17,16 @@ export default defineConfig({
 		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
 		rehypePlugins: [rehypeTypst],
 	}),
+	vite: {
+		build: {
+			rollupOptions: {
+				// @ts-ignore
+				checks: {
+					preferBuiltinFeature: false,
+				}
+			}
+		}
+	},
 	integrations: [
 		typst({
 			// @ts-expect-error
