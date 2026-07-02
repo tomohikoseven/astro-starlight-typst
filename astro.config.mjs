@@ -12,11 +12,13 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://astrotypst.ifdef.jp/',
-	markdown: unified({
-		// @ts-ignore
-		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
-		rehypePlugins: [rehypeTypst],
-	}),
+	markdown: {
+		processor: unified({
+			// @ts-ignore
+			remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
+			rehypePlugins: [rehypeTypst],
+		})
+	},
 	vite: {
 		build: {
 			rollupOptions: {
