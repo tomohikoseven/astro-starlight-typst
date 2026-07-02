@@ -1,4 +1,5 @@
 // @ts-check
+import { unified } from '@astrojs/markdown-remark';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { typst } from 'astro-typst';
@@ -11,11 +12,11 @@ import rehypeTypst from '@myriaddreamin/rehype-typst';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://astrotypst.ifdef.jp/',
-	markdown: {
+	markdown: unified({
 		// @ts-ignore
 		remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
 		rehypePlugins: [rehypeTypst],
-	},
+	}),
 	integrations: [
 		typst({
 			// @ts-expect-error
