@@ -84,14 +84,14 @@ $$
 ```
 
 ### 3. 追加ライブラリ (Fletcher, Physica) を使って書く
-新しく追加された `fletcher` や `physica` は、ローカルの `/libs/` ディレクトリからインポートして使用します。
+新しく追加された `fletcher` や `physica` は、Typstの公式パッケージマネージャ (`@preview`) を利用してインポートします。
 
 #### MDX での記述例
 
 ```mdx
 ## Physica による物理数式
 $$
-#import "/libs/physica/physica.typ": *
+#import "@preview/physica:0.9.8": *
 // 偏微分とディラック記法
 pdv(f, x, y) = pdv(f, y, x) \
 braket(phi, hat(H), psi)
@@ -110,7 +110,7 @@ $$
 #### Typst Native (.typ) での記述例
 
 ```typst
-#import "../../../../libs/physica/physica.typ": *
+#import "@preview/physica:0.9.8": *
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
 $ pdv(f, x, y) $
@@ -136,7 +136,7 @@ $)
 - `@myriaddreamin/rehype-typst`: 解析された数式を Typst エンジンで描画。
 - **CeTZ**: ベクターグラフィックス描画ライブラリ（Typst公式パッケージ）。
 - **Fletcher**: 高機能ダイアグラム・可換図式描画ライブラリ（CeTZベース、Typst公式パッケージ）。
-- **Physica (libs/physica)**: 物理・数学記法支援ライブラリ。
+- **Physica**: 物理・数学記法支援ライブラリ。`@preview/physica:0.9.8` 経由で取得します。
 
 ### カスタマイズ内容
 - **`src/content.config.ts`**: Starlight の `docsLoader` をカスタマイズし、`.typ` 拡張子をコンテンツコレクションとして認識するように変更。

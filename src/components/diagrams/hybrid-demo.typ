@@ -1,6 +1,6 @@
 #set page(width: auto, height: auto, margin: 0pt)
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import "../../../libs/physica/physica.typ": *
+#import "@preview/physica:0.9.8": *
 
 #diagram(
   cell-size: 26mm,
